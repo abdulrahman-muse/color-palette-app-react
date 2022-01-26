@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 
-function ColorPalleteItems({ shades, background, setBackground }) {
+function ColorPalleteItems({ deleteShade, shades, background, setBackground }) {
     const [current, setCurrent] = useState(null);
 
     useEffect(() => {
@@ -14,12 +14,13 @@ function ColorPalleteItems({ shades, background, setBackground }) {
         return () => clearTimeout(timeoutId)
     }, [current])
 
+
     return (
         <div style={{ background: background, paddingTop: '35px' }}>
             {current !== null && <h1 style={{ paddingTop: "20px" }}> Copied {current}</h1>}
             <div className="container">
                 {shades.map((shade) => (
-                    <div key={shade.hex_code} className="card">
+                    <div key={shade.id} className="card">
                         <div style={{
                             background: shade.hex_code,
                             filter: "brightness(85%)",
@@ -29,9 +30,10 @@ function ColorPalleteItems({ shades, background, setBackground }) {
                             onClick={() => setBackground(shade.hex_code)}>
                         </div>
                         <CopyToClipboard text={`color: ${shade.hex_code};`}>
-                            <p style={{ color: shade.hex_code === background ? "#fff" : shade.hex_code, padding: "7px" }}
+                            <p style={{ color: shade.hex_code === background ? "#fff" : shade.hex_code, padding: "7px", fontSize: 15 }}
                                 onClick={(() => setCurrent(shade.hex_code))}>{shade.hex_code}</p>
                         </CopyToClipboard>
+                        <button style={{ cursor: "pointer" }} onClick={() => deleteShade(shade.id)} >Delete Shade</button>
                     </div>
                 ))}
             </div>

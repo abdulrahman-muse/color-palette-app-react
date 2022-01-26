@@ -19,20 +19,49 @@ function App() {
   const [background, setBackground] = useState("#071415");
 
   useEffect(() => {
+    renderShades()
+  }, []);
+
+  function renderShades() {
     fetch("http://localhost:9292/shades")
       .then((response) => response.json())
       .then((data) => {
         setShades(data);
-      });
-  }, []);
+      })
+  }
 
-  useEffect(() => {
-    fetch("http://localhost:9292/colors")
-      .then((response) => response.json())
-      .then((data) => {
-        setColors(data);
-      });
-  }, []);
+  // let get = async () => {
+  //   try {
+
+  //     const response = await fetch('http://localhost:9292/shades')
+  //     const json = await response.json()
+
+  //     console.log(json);
+  //   } catch (error) {
+  //     console.log(error.response.body);
+  //   }
+  // };
+
+  // let post = async (formData) => {
+  //   try {
+  //     const settings = {
+  //       method: 'POST',
+  //       headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(FormData)
+  //   };
+  //     const response = await fetch('http://localhost:9292/shades',settings)
+  //     const json = await response.json()
+
+  //     console.log(json);
+  //   } catch (error) {
+  //     console.log(error.response.body);
+  //   }
+  // };
+
+
 
 
   const addColor = (formData) => {
@@ -44,8 +73,23 @@ function App() {
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())
-      .then((newCr) => setShades([...shades, newCr]));
+      .then((newSh) => {
+        console.log(newSh)
+      })
   };
+
+  function deleteShade(id) {
+    fetch(`http://localhost:9292/shades/${id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((deletedShade) => {
+        console.log(deletedShade)
+        const filteredShades = shades.filter((shade) => shade.id !== id)
+        setShades(filteredShades)
+      });
+  }
+
 
 
 
@@ -57,13 +101,13 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Message />
-            <ColorPalleteItems shades={shades} setShades={setShades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <ColorPalleteItems setShades={setShades} deleteShade={deleteShade} shades={shades} setShades={setShades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
           {/* <Route exact path="/search">
             <Search setSearchTerm={setSearchTerm} shades={shades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route> */}
           <Route path="/add">
-            <AddColorForm addColor={addColor} shades={shades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <AddColorForm addColor={addColor} deleteShade={deleteShade} shades={shades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
         </Switch>
       </Router>
