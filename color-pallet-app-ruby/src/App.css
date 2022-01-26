@@ -1,11 +1,29 @@
 .App {
   text-align: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: sans-serif;
+}
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+  line-height: 1;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
+}
 .container {
   margin: auto;
-  width: 200%;
-  max-width: 350px;
+  width: 100%;
+  max-width: 390px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -29,13 +47,51 @@
   border-radius: 12px;
   cursor: pointer;
 }
-h1 {
+.hi {
   text-align: center;
   color: #fff;
-  font-size: 45px;
-  line-height: 1;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translate(-50%);
+}
+label {
+  display: inline-block;
+  padding: 8px;
+  clear: left;
+  width: 250px;
+  text-align: right;
+}
+input {
+  display: inline-block;
+  text-align: center;
+}
+
+.hi {
+  border: none;
+  width: 15%;
+  outline: none;
+  color: black;
+  padding: 0.5em;
+  border-radius: 18px;
+  background: white;
+}
+.button-12 {
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  border-radius: 6px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+
+  background: #6e6d70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #dfdedf;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-12:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }
