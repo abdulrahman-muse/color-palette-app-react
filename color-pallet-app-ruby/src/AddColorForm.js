@@ -24,10 +24,9 @@ function AddColorForm({ deleteShade, shades, addColor, searchTerm, background, s
     };
 
     return (
-        <div style={{ textAlign: "center", paddingTop: "100px" }} >
+        <div style={{ textAlign: "center", paddingTop: "10px" }} >
             <form onSubmit={onSubmit} >
                 <input style={{ width: 150, margin: "15px" }} value={formData.hex_code} type="text" name="hex_code" placeholder="Add Shade" className="hi" onChange={handleInputChange} />
-                {/* <input style={{ width: 100 }} value={formData.color_id} type="text" name="color_id" placeholder="Add Color"  className="hi" /> */}
                 <select name="color_id" onChange={handleInputChange}>
                     <option value="0">Select Color:</option>
                     <option value="36" >Blue</option>

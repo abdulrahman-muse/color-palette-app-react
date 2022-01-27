@@ -3,7 +3,8 @@ import AddColorForm from './AddColorForm';
 import './App.css';
 import ColorPalleteItems from './ColorPalleteItems';
 import Search from './Search';
-import Message from './Message';
+import HomeMessage from './HomeMessage';
+import FormMessage from './FormMessage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -40,6 +41,7 @@ function App() {
       .then((resp) => resp.json())
       .then((newSh) => {
         console.log(newSh)
+        setShades([...shades, newSh])
       })
   };
 
@@ -61,13 +63,14 @@ function App() {
         <NavBar setBackground={setBackground} />
         <Switch>
           <Route exact path="/">
-            <Message />
+            <HomeMessage />
             <ColorPalleteItems setShades={setShades} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
-          {/* <Route exact path="/search">
+          <Route exact path="/search">
             <Search setSearchTerm={setSearchTerm} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
-          </Route> */}
+          </Route>
           <Route path="/add">
+            <FormMessage />
             <AddColorForm addColor={addColor} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
         </Switch>
