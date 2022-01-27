@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ColorPalleteItems from "./ColorPalleteItems";
 
-function AddColorForm({ deleteShade, shades, addColor, colors, searchTerm, background, setBackground }) {
+function AddColorForm({ deleteShade, shades, addColor, searchTerm, background, setBackground }) {
     const [formData, setFormData] = useState({
         hex_code: "",
         color_id: 0
@@ -26,13 +26,21 @@ function AddColorForm({ deleteShade, shades, addColor, colors, searchTerm, backg
     return (
         <div style={{ textAlign: "center", paddingTop: "100px" }} >
             <form onSubmit={onSubmit} >
-                <input style={{ width: 150, margin: "15px" }} value={formData.hex_code} type="text" name="hex_code" placeholder="Add Shade" onChange={handleInputChange} className="hi" />
-                <input style={{ width: 100 }} value={formData.color_id} type="text" name="color_id" placeholder="Add Color" onChange={handleInputChange} className="hi" />
+                <input style={{ width: 150, margin: "15px" }} value={formData.hex_code} type="text" name="hex_code" placeholder="Add Shade" className="hi" onChange={handleInputChange} />
+                {/* <input style={{ width: 100 }} value={formData.color_id} type="text" name="color_id" placeholder="Add Color"  className="hi" /> */}
+                <select name="color_id" onChange={handleInputChange}>
+                    <option value="0">Select Color:</option>
+                    <option value="36" >Blue</option>
+                    <option value="37" >Red</option>
+                    <option value="38" >Green</option>
+                    <option value="39" >Purple</option>
+                    <option value="40" >Pink</option>
+                </select>
                 <button type="submit" className="button-12" style={{ margin: "15px", borderRadius: "60px", width: "100px", height: "27px", cursor: "pointer" }}>
                     Submit
                 </button>
             </form>
-            <ColorPalleteItems deleteShade={deleteShade} colors={colors} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <ColorPalleteItems deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
         </div>
     );
 }

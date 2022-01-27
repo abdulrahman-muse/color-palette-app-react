@@ -14,7 +14,6 @@ import NavBar from './NavBar';
 
 function App() {
   const [shades, setShades] = useState([]);
-  const [colors, setColors] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [background, setBackground] = useState("#071415");
 
@@ -29,40 +28,6 @@ function App() {
         setShades(data);
       })
   }
-
-  // let get = async () => {
-  //   try {
-
-  //     const response = await fetch('http://localhost:9292/shades')
-  //     const json = await response.json()
-
-  //     console.log(json);
-  //   } catch (error) {
-  //     console.log(error.response.body);
-  //   }
-  // };
-
-  // let post = async (formData) => {
-  //   try {
-  //     const settings = {
-  //       method: 'POST',
-  //       headers: {
-  //           Accept: 'application/json',
-  //           'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(FormData)
-  //   };
-  //     const response = await fetch('http://localhost:9292/shades',settings)
-  //     const json = await response.json()
-
-  //     console.log(json);
-  //   } catch (error) {
-  //     console.log(error.response.body);
-  //   }
-  // };
-
-
-
 
   const addColor = (formData) => {
     fetch("http://localhost:9292/shades", {
@@ -90,10 +55,6 @@ function App() {
       });
   }
 
-
-
-
-
   return (
     <div className='App' style={{ background: background }}>
       <Router>
@@ -101,13 +62,13 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Message />
-            <ColorPalleteItems setShades={setShades} deleteShade={deleteShade} shades={shades} setShades={setShades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <ColorPalleteItems setShades={setShades} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
           {/* <Route exact path="/search">
-            <Search setSearchTerm={setSearchTerm} shades={shades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <Search setSearchTerm={setSearchTerm} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route> */}
           <Route path="/add">
-            <AddColorForm addColor={addColor} deleteShade={deleteShade} shades={shades} colors={colors} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <AddColorForm addColor={addColor} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
         </Switch>
       </Router>
