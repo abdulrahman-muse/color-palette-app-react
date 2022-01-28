@@ -22,8 +22,8 @@ h1 {
 }
 .container {
   margin: auto;
-  width: 100%;
-  max-width: 590px;
+  width: 200%;
+  max-width: 350px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

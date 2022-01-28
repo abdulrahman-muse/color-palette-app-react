@@ -64,11 +64,11 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomeMessage />
-            <ColorPalleteItems setShades={setShades} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
+            <ColorPalleteItems deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
           </Route>
-          <Route exact path="/search">
+          {/* <Route exact path="/search">
             <Search setSearchTerm={setSearchTerm} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
-          </Route>
+          </Route> */}
           <Route path="/add">
             <FormMessage />
             <AddColorForm addColor={addColor} deleteShade={deleteShade} shades={shades} searchTerm={searchTerm} background={background} setBackground={setBackground} />
